@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RestaurantSupplementEditDlg" widgetVar="RestaurantSupplementEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditRestaurantSupplementTitle}">
+            <h:form id="RestaurantSupplementEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{restaurantSupplementController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditRestaurantSupplementLabel_prix}" for="prix" />
+                        <p:inputText id="prix" value="#{restaurantSupplementController.selected.prix}" title="#{bundle.EditRestaurantSupplementTitle_prix}" />
+                        <p:outputLabel value="#{bundle.EditRestaurantSupplementLabel_restaurant}" for="restaurant" />
+                        <p:selectOneMenu id="restaurant" value="#{restaurantSupplementController.selected.restaurant}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{restaurantController.itemsAvailableSelectOne}"
+                                           var="restaurantItem"
+                                           itemValue="#{restaurantItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditRestaurantSupplementLabel_supplement}" for="supplement" />
+                        <p:selectOneMenu id="supplement" value="#{restaurantSupplementController.selected.supplement}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{supplementController.itemsAvailableSelectOne}"
+                                           var="supplementItem"
+                                           itemValue="#{supplementItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditRestaurantSupplementLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{restaurantSupplementController.selected.id}" title="#{bundle.EditRestaurantSupplementTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{restaurantSupplementController.update}" value="#{bundle.Save}" update="display,:RestaurantSupplementListForm:datalist,:growl" oncomplete="handleSubmit(args, 'RestaurantSupplementEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RestaurantSupplementEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
