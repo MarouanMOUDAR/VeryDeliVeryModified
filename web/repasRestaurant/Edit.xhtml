@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RepasRestaurantEditDlg" widgetVar="RepasRestaurantEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditRepasRestaurantTitle}">
+            <h:form id="RepasRestaurantEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{repasRestaurantController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditRepasRestaurantLabel_prix}" for="prix" />
+                        <p:inputText id="prix" value="#{repasRestaurantController.selected.prix}" title="#{bundle.EditRepasRestaurantTitle_prix}" />
+                        <p:outputLabel value="#{bundle.EditRepasRestaurantLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{repasRestaurantController.selected.nom}" title="#{bundle.EditRepasRestaurantTitle_nom}" />
+                        <p:outputLabel value="#{bundle.EditRepasRestaurantLabel_repas}" for="repas" />
+                        <p:selectOneMenu id="repas" value="#{repasRestaurantController.selected.repas}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{repasController.itemsAvailableSelectOne}"
+                                           var="repasItem"
+                                           itemValue="#{repasItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditRepasRestaurantLabel_specialite}" for="specialite" />
+                        <p:selectOneMenu id="specialite" value="#{repasRestaurantController.selected.specialite}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{specialiteController.itemsAvailableSelectOne}"
+                                           var="specialiteItem"
+                                           itemValue="#{specialiteItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditRepasRestaurantLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{repasRestaurantController.selected.id}" title="#{bundle.EditRepasRestaurantTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{repasRestaurantController.update}" value="#{bundle.Save}" update="display,:RepasRestaurantListForm:datalist,:growl" oncomplete="handleSubmit(args, 'RepasRestaurantEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RepasRestaurantEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
