@@ -128,7 +128,7 @@ public class Ville implements Serializable {
 
     @Override
     public String toString() {
-        return "bean.Ville[ id=" + id + " ]";
+        return nom;
     }
     
 }

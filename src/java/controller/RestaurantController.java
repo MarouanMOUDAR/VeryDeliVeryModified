@@ -1,11 +1,14 @@
 package controller;
 
+import bean.Quartier;
 import bean.Restaurant;
 import controller.util.JsfUtil;
 import controller.util.JsfUtil.PersistAction;
 import service.RestaurantFacade;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -25,13 +28,22 @@ public class RestaurantController implements Serializable {
 
     @EJB
     private service.RestaurantFacade ejbFacade;
+    @EJB
+    private service.QuartierFacade quartierFacade;
     private List<Restaurant> items = null;
     private Restaurant selected;
+    private Date DateOuverture;
+    private Date Datefermeture;
+    private List<Quartier> quartiers = null;
+    
 
     public RestaurantController() {
     }
 
     public Restaurant getSelected() {
+        if(selected == null){
+            selected = new Restaurant();
+        }
         return selected;
     }
 
@@ -54,6 +66,22 @@ public class RestaurantController implements Serializable {
         initializeEmbeddableKey();
         return selected;
     }
+    public void dateTostring(){
+        
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        getSelected().setHeureOuverture(format.format(getDateOuverture()));
+        
+    }
+    public void dateTostring2(){
+        
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        getSelected().setHeureFermeture(format.format(getDatefermeture()));
+        
+    }
+     public void findQuartierByStoreOwner() {
+        quartiers = quartierFacade.findByByStoreOwner(getSelected().getStoreOwner());
+    }
+
 
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("RestaurantCreated"));
@@ -162,4 +190,35 @@ public class RestaurantController implements Serializable {
 
     }
 
+    public Date getDateOuverture() {
+        if(DateOuverture == null){
+            DateOuverture = new Date();
+        } 
+        return DateOuverture;
+    }
+
+    public void setDateOuverture(Date DateOuverture) {
+        this.DateOuverture = DateOuverture;
+    }
+
+    public Date getDatefermeture() {
+        if(Datefermeture == null){
+            Datefermeture = new Date();
+        }
+        return Datefermeture;
+    }
+
+    public void setDatefermeture(Date Datefermeture) {
+        this.Datefermeture = Datefermeture;
+    }
+
+    public List<Quartier> getQuartiers() {
+        return quartiers;
+    }
+
+    public void setQuartiers(List<Quartier> quartiers) {
+        this.quartiers = quartiers;
+    }
+    
+    
 }

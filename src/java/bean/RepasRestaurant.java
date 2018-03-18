@@ -29,7 +29,7 @@ public class RepasRestaurant implements Serializable {
     private String nom;
     @ManyToOne
     private Repas repas;
-
+    
     @ManyToOne
     private Specialite specialite;
     @OneToMany(mappedBy = "repasRestaurant")

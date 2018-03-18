@@ -153,7 +153,7 @@ public class StoreOwner implements Serializable {
 
     @Override
     public String toString() {
-        return "bean.StoreOwner[ id=" + id + " ]";
+        return prenom+" "+nom;
     }
     
 }
