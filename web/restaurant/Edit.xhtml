@@ -28,6 +28,10 @@
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditRestaurantLabel_nom}" for="nom" />
                         <p:inputText id="nom" value="#{restaurantController.selected.nom}" title="#{bundle.EditRestaurantTitle_nom}" />
+                        <p:outputLabel value="#{bundle.EditRestaurantLabel_recu}" for="recu" />
+                        <p:inputText id="recu" value="#{restaurantController.selected.recu}" title="#{bundle.EditRestaurantTitle_recu}" />
+                        <p:outputLabel value="#{bundle.EditRestaurantLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{restaurantController.selected.status}" title="#{bundle.EditRestaurantTitle_status}" />
                         <p:outputLabel value="#{bundle.EditRestaurantLabel_adresseResto}" for="adresseResto" />
                         <p:inputText id="adresseResto" value="#{restaurantController.selected.adresseResto}" title="#{bundle.EditRestaurantTitle_adresseResto}" />
                         <p:outputLabel value="#{bundle.EditRestaurantLabel_heureOuverture}" for="heureOuverture" />

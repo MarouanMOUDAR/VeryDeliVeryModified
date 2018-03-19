@@ -30,7 +30,7 @@ public class RestaurantController implements Serializable {
     private service.RestaurantFacade ejbFacade;
     private List<Restaurant> items = null;
     private Restaurant selected;
-    private Date dateOuverture;        
+    private Date dateOuverture;
     private Date datefermeture;
     private List<Quartier> quartiers = null;
     @EJB
@@ -69,19 +69,22 @@ public class RestaurantController implements Serializable {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
-     public void dateTostring(){
-        
+
+    public void dateTostring() {
+
         SimpleDateFormat format = new SimpleDateFormat("HH:mm");
         getSelected().setHeureOuverture(format.format(getDateOuverture()));
-        
+
     }
-    public void dateTostring2(){
-        
+
+    public void dateTostring2() {
+
         SimpleDateFormat format = new SimpleDateFormat("HH:mm");
         getSelected().setHeureFermeture(format.format(getDatefermeture()));
-        
+
     }
-     public void findQuartierByStoreOwner() {
+
+    public void findQuartierByStoreOwner() {
         quartiers = quartierFacade.findByByStoreOwner(getSelected().getStoreOwner());
     }
 
@@ -186,7 +189,7 @@ public class RestaurantController implements Serializable {
     }
 
     public Date getDateOuverture() {
-        if(dateOuverture == null){
+        if (dateOuverture == null) {
             dateOuverture = new Date();
         }
         return dateOuverture;
@@ -197,7 +200,7 @@ public class RestaurantController implements Serializable {
     }
 
     public Date getDatefermeture() {
-        if(datefermeture == null){
+        if (datefermeture == null) {
             datefermeture = new Date();
         }
         return datefermeture;
@@ -214,7 +217,5 @@ public class RestaurantController implements Serializable {
     public void setQuartiers(List<Quartier> quartiers) {
         this.quartiers = quartiers;
     }
-    
-    
 
 }

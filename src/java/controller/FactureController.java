@@ -2,7 +2,6 @@ package controller;
 
 import bean.Facture;
 import bean.Restaurant;
-import bean.StoreOwner;
 import controller.util.JsfUtil;
 import controller.util.JsfUtil.PersistAction;
 import service.FactureFacade;
@@ -21,12 +20,13 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+
 @Named("factureController")
 @SessionScoped
 public class FactureController implements Serializable {
 
-    @EJB
-    private service.FactureFacade ejbFacade;
+
+    @EJB private service.FactureFacade ejbFacade;
     private List<Facture> items = null;
     private Facture selected;
     private bean.StoreOwner storeOwner;
@@ -88,7 +88,7 @@ public class FactureController implements Serializable {
     }
     public void findRestoByStoreOwner(){
         restaurants = restaurantFacade.findRestoByStoreOwner(storeOwner);
-        
+
     }
 
     private void persist(PersistAction persistAction, String successMessage) {
@@ -131,7 +131,7 @@ public class FactureController implements Serializable {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Facture.class)
+    @FacesConverter(forClass=Facture.class)
     public static class FactureControllerConverter implements Converter {
 
         @Override
@@ -139,7 +139,7 @@ public class FactureController implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            FactureController controller = (FactureController) facesContext.getApplication().getELResolver().
+            FactureController controller = (FactureController)facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "factureController");
             return controller.getFacture(getKey(value));
         }
@@ -171,26 +171,5 @@ public class FactureController implements Serializable {
         }
 
     }
-
-    public StoreOwner getStoreOwner() {
-        if(storeOwner == null){
-            storeOwner = new StoreOwner();
-        }
-        return storeOwner;
-    }
-
-    public void setStoreOwner(StoreOwner storeOwner) {
-        this.storeOwner = storeOwner;
-    }
-
-    public List<Restaurant> getRestaurants() {
-        return restaurants;
-    }
-
-    public void setRestaurants(List<Restaurant> restaurants) {
-        this.restaurants = restaurants;
-    }
-    
-    
 
 }

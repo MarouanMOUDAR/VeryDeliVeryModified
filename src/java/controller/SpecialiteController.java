@@ -19,12 +19,13 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+
 @Named("specialiteController")
 @SessionScoped
 public class SpecialiteController implements Serializable {
 
-    @EJB
-    private service.SpecialiteFacade ejbFacade;
+
+    @EJB private service.SpecialiteFacade ejbFacade;
     private List<Specialite> items = null;
     private Specialite selected;
 
@@ -121,7 +122,7 @@ public class SpecialiteController implements Serializable {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Specialite.class)
+    @FacesConverter(forClass=Specialite.class)
     public static class SpecialiteControllerConverter implements Converter {
 
         @Override
@@ -129,7 +130,7 @@ public class SpecialiteController implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            SpecialiteController controller = (SpecialiteController) facesContext.getApplication().getELResolver().
+            SpecialiteController controller = (SpecialiteController)facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "specialiteController");
             return controller.getSpecialite(getKey(value));
         }

@@ -55,10 +55,6 @@ public class AdminController implements Serializable {
         initializeEmbeddableKey();
         return selected;
     }
-//    public String test(){
-//        valueReder = "test";
-//        return null;
-//    }
 
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("AdminCreated"));
@@ -168,12 +164,12 @@ public class AdminController implements Serializable {
     }
 
     public int getValueReder() {
-
         return valueReder;
     }
 
     public void setValueReder(int valueReder) {
         this.valueReder = valueReder;
     }
+    
 
 }

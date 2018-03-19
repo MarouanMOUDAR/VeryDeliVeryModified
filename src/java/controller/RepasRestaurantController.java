@@ -19,12 +19,13 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+
 @Named("repasRestaurantController")
 @SessionScoped
 public class RepasRestaurantController implements Serializable {
 
-    @EJB
-    private service.RepasRestaurantFacade ejbFacade;
+
+    @EJB private service.RepasRestaurantFacade ejbFacade;
     private List<RepasRestaurant> items = null;
     private RepasRestaurant selected;
 
@@ -56,6 +57,7 @@ public class RepasRestaurantController implements Serializable {
     }
 
     public void create() {
+        
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("RepasRestaurantCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
@@ -121,7 +123,7 @@ public class RepasRestaurantController implements Serializable {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = RepasRestaurant.class)
+    @FacesConverter(forClass=RepasRestaurant.class)
     public static class RepasRestaurantControllerConverter implements Converter {
 
         @Override
@@ -129,7 +131,7 @@ public class RepasRestaurantController implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            RepasRestaurantController controller = (RepasRestaurantController) facesContext.getApplication().getELResolver().
+            RepasRestaurantController controller = (RepasRestaurantController)facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "repasRestaurantController");
             return controller.getRepasRestaurant(getKey(value));
         }

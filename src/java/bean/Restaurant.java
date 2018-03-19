@@ -41,6 +41,8 @@ public class Restaurant implements Serializable {
     private List<RestaurantSupplement> restaurantSupplements;
     @OneToMany(mappedBy = "restaurant")
     private List<RepasRestaurant> repasRestaurants;
+    private Long recu;
+    private int status;
    
 
     public Restaurant() {
@@ -106,6 +108,31 @@ public class Restaurant implements Serializable {
         this.nom = nom;
     }
 
+    public List<RepasRestaurant> getRepasRestaurants() {
+        return repasRestaurants;
+    }
+
+    public void setRepasRestaurants(List<RepasRestaurant> repasRestaurants) {
+        this.repasRestaurants = repasRestaurants;
+    }
+
+    public Long getRecu() {
+        return recu;
+    }
+
+    public void setRecu(Long recu) {
+        this.recu = recu;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+    
+    
     public String getAdresseResto() {
         return adresseResto;
     }

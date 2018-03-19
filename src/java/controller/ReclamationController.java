@@ -83,7 +83,7 @@ public class ReclamationController implements Serializable {
         return items;
     }
     public void test1(Reclamation reclamation){
-        
+
        reclamation.setDateReclamation(new Date());
        getFacade().edit(reclamation);
        System.out.println(reclamation.getDateTraitement());
@@ -173,7 +173,7 @@ public class ReclamationController implements Serializable {
     public List<Reclamation> getReclamationsAdmin() {
         if (reclamationsAdmin == null) {
             reclamationsAdmin = getFacade().findReclamationNonTraiter();
-        }
+}
         return reclamationsAdmin;
     }
 

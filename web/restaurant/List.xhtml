@@ -47,6 +47,18 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRestaurantTitle_recu}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.recu}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRestaurantTitle_status}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.status}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListRestaurantTitle_adresseResto}"/>
                             </f:facet>
                             <h:outputText value="#{item.adresseResto}"/>
