@@ -35,13 +35,12 @@ public class RestaurantController implements Serializable {
     private Date DateOuverture;
     private Date Datefermeture;
     private List<Quartier> quartiers = null;
-    
 
     public RestaurantController() {
     }
 
     public Restaurant getSelected() {
-        if(selected == null){
+        if (selected == null) {
             selected = new Restaurant();
         }
         return selected;
@@ -66,22 +65,24 @@ public class RestaurantController implements Serializable {
         initializeEmbeddableKey();
         return selected;
     }
-    public void dateTostring(){
-        
+
+    public void dateTostring() {
+
         SimpleDateFormat format = new SimpleDateFormat("HH:mm");
         getSelected().setHeureOuverture(format.format(getDateOuverture()));
-        
-    }
-    public void dateTostring2(){
-        
-        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
-        getSelected().setHeureFermeture(format.format(getDatefermeture()));
-        
-    }
-     public void findQuartierByStoreOwner() {
-        quartiers = quartierFacade.findByByStoreOwner(getSelected().getStoreOwner());
+
     }
 
+    public void dateTostring2() {
+
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        getSelected().setHeureFermeture(format.format(getDatefermeture()));
+
+    }
+
+    public void findQuartierByStoreOwner() {
+        quartiers = quartierFacade.findByByStoreOwner(getSelected().getStoreOwner());
+    }
 
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("RestaurantCreated"));
@@ -191,9 +192,9 @@ public class RestaurantController implements Serializable {
     }
 
     public Date getDateOuverture() {
-        if(DateOuverture == null){
+        if (DateOuverture == null) {
             DateOuverture = new Date();
-        } 
+        }
         return DateOuverture;
     }
 
@@ -202,7 +203,7 @@ public class RestaurantController implements Serializable {
     }
 
     public Date getDatefermeture() {
-        if(Datefermeture == null){
+        if (Datefermeture == null) {
             Datefermeture = new Date();
         }
         return Datefermeture;
@@ -219,6 +220,5 @@ public class RestaurantController implements Serializable {
     public void setQuartiers(List<Quartier> quartiers) {
         this.quartiers = quartiers;
     }
-    
-    
+
 }

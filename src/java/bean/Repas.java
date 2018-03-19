@@ -89,7 +89,7 @@ public class Repas implements Serializable {
 
     @Override
     public String toString() {
-        return "bean.Repas[ id=" + id + " ]";
+        return nom;
     }
     
 }

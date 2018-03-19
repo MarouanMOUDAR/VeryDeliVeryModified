@@ -39,6 +39,8 @@ public class Restaurant implements Serializable {
     private StoreOwner storeOwner;
     @OneToMany(mappedBy = "restaurant")
     private List<RestaurantSupplement> restaurantSupplements;
+    @OneToMany(mappedBy = "restaurant")
+    private List<RepasRestaurant> repasRestaurants;
 
     public Restaurant() {
     }
@@ -175,7 +177,7 @@ public class Restaurant implements Serializable {
 
     @Override
     public String toString() {
-        return "bean.Restaurant[ id=" + id + " ]";
+        return nom;
     }
     
 }

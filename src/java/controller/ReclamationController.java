@@ -27,6 +27,7 @@ public class ReclamationController implements Serializable {
     private service.ReclamationFacade ejbFacade;
     private List<Reclamation> items = null;
     private Reclamation selected;
+    private List<Reclamation> reclamationsAdmin;
 
     public ReclamationController() {
     }
@@ -161,5 +162,17 @@ public class ReclamationController implements Serializable {
         }
 
     }
+
+    public List<Reclamation> getReclamationsAdmin() {
+        if(reclamationsAdmin == null){
+            reclamationsAdmin = getFacade().findReclamationNonTraiter();
+        }
+        return reclamationsAdmin;
+    }
+
+    public void setReclamationsAdmin(List<Reclamation> reclamationsAdmin) {
+        this.reclamationsAdmin = reclamationsAdmin;
+    }
+    
 
 }

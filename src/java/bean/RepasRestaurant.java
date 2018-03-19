@@ -29,7 +29,8 @@ public class RepasRestaurant implements Serializable {
     private String nom;
     @ManyToOne
     private Repas repas;
-    
+    @ManyToOne
+    private Restaurant restaurant;
     @ManyToOne
     private Specialite specialite;
     @OneToMany(mappedBy = "repasRestaurant")
@@ -103,6 +104,25 @@ public class RepasRestaurant implements Serializable {
         this.commandeItems = commandeItems;
     }
 
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
+
+    public RepasRestaurant(Long id, double prix, String nom, Repas repas, Restaurant restaurant, Specialite specialite, List<Favoris> favoriss, List<CommandeItem> commandeItems) {
+        this.id = id;
+        this.prix = prix;
+        this.nom = nom;
+        this.repas = repas;
+        this.restaurant = restaurant;
+        this.specialite = specialite;
+        this.favoriss = favoriss;
+        this.commandeItems = commandeItems;
+    }
+    
     
    
 

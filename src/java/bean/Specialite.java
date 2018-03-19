@@ -90,7 +90,7 @@ public class Specialite implements Serializable {
 
     @Override
     public String toString() {
-        return "bean.NationaliteRepas[ id=" + id + " ]";
+        return nom;
     }
     
 }
