@@ -12,14 +12,14 @@
     <h:outputLabel for="menu">Available actions: </h:outputLabel>
     <h:selectOneMenu id="menu" value="#{adminController.valueReder}">
         <f:selectItem itemLabel="Select an option..." itemValue="#{null}" />
-        <f:selectItem itemValue="1"  itemLabel="wach hada"/>
-        <f:selectItem itemValue="2" itemLabel="ola hada"/>
+        <f:selectItem itemValue="1"  itemLabel="Les réclamation"/>
+        <f:selectItem itemValue="2" itemLabel="List des Restaurants"/>
         <f:ajax render=":menuForm :adminUsers :loadInfo :viewFiles :adminUsersForm :loadInfoForm :viewFilesForm" />
     </h:selectOneMenu>
 </h:form>
 
 <h:panelGroup id="adminUsers">
-    <h:form id="adminUsersForm" rendered="#{adminController.valueReder == 0}">
+    <h:form id="adminUsersForm" rendered="#{adminController.valueReder == 1}">
         <p:dataTable id="datalist" value="#{reclamationController.reclamationsAdmin}" var="item"
                                  selectionMode="single" selection="#{reclamationController.selected}"
                                  paginator="true"
@@ -60,13 +60,48 @@
 </h:panelGroup>
 
 <h:panelGroup id="loadInfo">
-    <h:form id="loadInfoForm" rendered="#{adminController.valueReder == 1}">
-        <h:commandButton value="Button 2" />
+    <h:form id="loadInfoForm" rendered="#{adminController.valueReder == 2}">
+        <p:dataTable id="datalist" value="#{restaurantController.itemsAvailableSelectOne}" var="item"
+                     selectionMode="single" selection="#{restaurantController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.id}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+            
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Restaurant"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nom}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Adresse"/>
+                            </f:facet>
+                            <h:outputText value="#{item.adresseResto}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Horaire"/>
+                            </f:facet>
+                            <h:outputText value="#{item.heureOuverture}" /> <h:outputText value="-#{item.heureFermeture}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Traitement" />
+                            </f:facet>
+                            <p:commandButton value="Consulter" />
+                        </p:column>
+                       
+                    </p:dataTable>
     </h:form>
 </h:panelGroup>
 
 <h:panelGroup id="viewFiles">
-    <h:form id="viewFilesForm" rendered="#{adminController.valueReder == 2}">
+    <h:form id="viewFilesForm" rendered="#{adminController.valueReder == 3}">
         <h:commandButton value="Button 3" />
     </h:form>
 </h:panelGroup>

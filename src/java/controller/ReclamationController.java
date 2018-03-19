@@ -6,6 +6,7 @@ import controller.util.JsfUtil.PersistAction;
 import service.ReclamationFacade;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -80,6 +81,12 @@ public class ReclamationController implements Serializable {
             items = getFacade().findAll();
         }
         return items;
+    }
+    public void test1(Reclamation reclamation){
+        
+       reclamation.setDateReclamation(new Date());
+       getFacade().edit(reclamation);
+       System.out.println(reclamation.getDateTraitement());
     }
 
     private void persist(PersistAction persistAction, String successMessage) {
@@ -164,7 +171,7 @@ public class ReclamationController implements Serializable {
     }
 
     public List<Reclamation> getReclamationsAdmin() {
-        if(reclamationsAdmin == null){
+        if (reclamationsAdmin == null) {
             reclamationsAdmin = getFacade().findReclamationNonTraiter();
         }
         return reclamationsAdmin;
@@ -173,6 +180,5 @@ public class ReclamationController implements Serializable {
     public void setReclamationsAdmin(List<Reclamation> reclamationsAdmin) {
         this.reclamationsAdmin = reclamationsAdmin;
     }
-    
 
 }

@@ -30,11 +30,11 @@ public class QuartierFacade extends AbstractFacade<Quartier> {
     public QuartierFacade() {
         super(Quartier.class);
     }
-    
-      public List<Quartier> findByByStoreOwner(StoreOwner storeOwner) {
+     public List<Quartier> findByByStoreOwner(StoreOwner storeOwner) {
         System.out.println("haaa sotoreOwner => " + storeOwner);
         List<Quartier> res = em.createQuery("SELECT q FROM Quartier q WHERE q.ville.nom ='" + storeOwner.getVille() + "'").getResultList();
         System.out.println("haaa res ==> " + res);
         return res;
     }
+    
 }

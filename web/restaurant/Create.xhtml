@@ -12,18 +12,19 @@
             <h:form id="RestaurantCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{restaurantController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateRestaurantLabel_storeOwner}" for="storeOwner" />
-                        <p:selectOneMenu id="storeOwner" value="#{restaurantController.selected.storeOwner}" >
+                        <p:outputLabel value="storeOwner" for="storeOwner" />
+                       <p:selectOneMenu id="storeOwner" value="#{restaurantController.selected.storeOwner}" >
                             <p:ajax process="storeOwner" listener="#{restaurantController.findQuartierByStoreOwner()}" update="quartier" />
+                            
                             <f:selectItems value="#{storeOwnerController.itemsAvailableSelectOne}"
                                            var="storeOwnerItem"
-
+                                           
                                            itemValue="#{storeOwnerItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateRestaurantLabel_quartier}" for="quartier" />
                         <p:selectOneMenu id="quartier" value="#{restaurantController.selected.quartier}">
                             <f:selectItems value="#{restaurantController.quartiers}"
-
+                                           
                                            itemValue="#{quartierItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateRestaurantLabel_nom}" for="nom" />
@@ -38,7 +39,8 @@
                         <p:inputText id="lat" value="#{restaurantController.selected.lat}" title="#{bundle.CreateRestaurantTitle_lat}" />
                         <p:outputLabel value="#{bundle.CreateRestaurantLabel_lng}" for="lng" />
                         <p:inputText id="lng" value="#{restaurantController.selected.lng}" title="#{bundle.CreateRestaurantTitle_lng}" />
-
+                        <p:outputLabel value="#{bundle.CreateRestaurantLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{restaurantController.selected.id}" title="#{bundle.CreateRestaurantTitle_id}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{restaurantController.create}" value="#{bundle.Save}" update="display,:RestaurantListForm:datalist,:growl" oncomplete="handleSubmit(args,'RestaurantCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="RestaurantCreateDialog.hide()"/>

@@ -1,6 +1,8 @@
 package controller;
 
 import bean.Facture;
+import bean.Restaurant;
+import bean.StoreOwner;
 import controller.util.JsfUtil;
 import controller.util.JsfUtil.PersistAction;
 import service.FactureFacade;
@@ -27,6 +29,10 @@ public class FactureController implements Serializable {
     private service.FactureFacade ejbFacade;
     private List<Facture> items = null;
     private Facture selected;
+    private bean.StoreOwner storeOwner;
+    @EJB
+    private service.RestaurantFacade restaurantFacade;
+    private List<Restaurant> restaurants = null;
 
     public FactureController() {
     }
@@ -79,6 +85,10 @@ public class FactureController implements Serializable {
             items = getFacade().findAll();
         }
         return items;
+    }
+    public void findRestoByStoreOwner(){
+        restaurants = restaurantFacade.findRestoByStoreOwner(storeOwner);
+        
     }
 
     private void persist(PersistAction persistAction, String successMessage) {
@@ -161,5 +171,26 @@ public class FactureController implements Serializable {
         }
 
     }
+
+    public StoreOwner getStoreOwner() {
+        if(storeOwner == null){
+            storeOwner = new StoreOwner();
+        }
+        return storeOwner;
+    }
+
+    public void setStoreOwner(StoreOwner storeOwner) {
+        this.storeOwner = storeOwner;
+    }
+
+    public List<Restaurant> getRestaurants() {
+        return restaurants;
+    }
+
+    public void setRestaurants(List<Restaurant> restaurants) {
+        this.restaurants = restaurants;
+    }
+    
+    
 
 }

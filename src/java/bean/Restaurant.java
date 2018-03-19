@@ -41,6 +41,7 @@ public class Restaurant implements Serializable {
     private List<RestaurantSupplement> restaurantSupplements;
     @OneToMany(mappedBy = "restaurant")
     private List<RepasRestaurant> repasRestaurants;
+   
 
     public Restaurant() {
     }

@@ -30,6 +30,13 @@
                                            var="specialiteItem"
                                            itemValue="#{specialiteItem}"/>
                         </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditRepasRestaurantLabel_restaurant}" for="restaurant" />
+                        <p:selectOneMenu id="restaurant" value="#{repasRestaurantController.selected.restaurant}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{restaurantController.itemsAvailableSelectOne}"
+                                           var="restaurantItem"
+                                           itemValue="#{restaurantItem}"/>
+                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditRepasRestaurantLabel_id}" for="id" />
                         <p:inputText id="id" value="#{repasRestaurantController.selected.id}" title="#{bundle.EditRepasRestaurantTitle_id}" />
                     </p:panelGrid>

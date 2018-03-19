@@ -6,6 +6,7 @@
 package service;
 
 import bean.StoreOwner;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +29,6 @@ public class StoreOwnerFacade extends AbstractFacade<StoreOwner> {
     public StoreOwnerFacade() {
         super(StoreOwner.class);
     }
+   
     
 }

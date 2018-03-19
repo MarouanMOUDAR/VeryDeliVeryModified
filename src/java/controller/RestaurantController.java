@@ -28,21 +28,18 @@ public class RestaurantController implements Serializable {
 
     @EJB
     private service.RestaurantFacade ejbFacade;
-    @EJB
-    private service.QuartierFacade quartierFacade;
     private List<Restaurant> items = null;
     private Restaurant selected;
-    private Date DateOuverture;
-    private Date Datefermeture;
+    private Date dateOuverture;        
+    private Date datefermeture;
     private List<Quartier> quartiers = null;
+    @EJB
+    private service.QuartierFacade quartierFacade;
 
     public RestaurantController() {
     }
 
     public Restaurant getSelected() {
-        if (selected == null) {
-            selected = new Restaurant();
-        }
         return selected;
     }
 
@@ -66,29 +63,26 @@ public class RestaurantController implements Serializable {
         return selected;
     }
 
-    public void dateTostring() {
-
-        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
-        getSelected().setHeureOuverture(format.format(getDateOuverture()));
-
-    }
-
-    public void dateTostring2() {
-
-        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
-        getSelected().setHeureFermeture(format.format(getDatefermeture()));
-
-    }
-
-    public void findQuartierByStoreOwner() {
-        quartiers = quartierFacade.findByByStoreOwner(getSelected().getStoreOwner());
-    }
-
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("RestaurantCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
+    }
+     public void dateTostring(){
+        
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        getSelected().setHeureOuverture(format.format(getDateOuverture()));
+        
+    }
+    public void dateTostring2(){
+        
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        getSelected().setHeureFermeture(format.format(getDatefermeture()));
+        
+    }
+     public void findQuartierByStoreOwner() {
+        quartiers = quartierFacade.findByByStoreOwner(getSelected().getStoreOwner());
     }
 
     public void update() {
@@ -192,25 +186,25 @@ public class RestaurantController implements Serializable {
     }
 
     public Date getDateOuverture() {
-        if (DateOuverture == null) {
-            DateOuverture = new Date();
+        if(dateOuverture == null){
+            dateOuverture = new Date();
         }
-        return DateOuverture;
+        return dateOuverture;
     }
 
-    public void setDateOuverture(Date DateOuverture) {
-        this.DateOuverture = DateOuverture;
+    public void setDateOuverture(Date dateOuverture) {
+        this.dateOuverture = dateOuverture;
     }
 
     public Date getDatefermeture() {
-        if (Datefermeture == null) {
-            Datefermeture = new Date();
+        if(datefermeture == null){
+            datefermeture = new Date();
         }
-        return Datefermeture;
+        return datefermeture;
     }
 
-    public void setDatefermeture(Date Datefermeture) {
-        this.Datefermeture = Datefermeture;
+    public void setDatefermeture(Date datefermeture) {
+        this.datefermeture = datefermeture;
     }
 
     public List<Quartier> getQuartiers() {
@@ -220,5 +214,7 @@ public class RestaurantController implements Serializable {
     public void setQuartiers(List<Quartier> quartiers) {
         this.quartiers = quartiers;
     }
+    
+    
 
 }

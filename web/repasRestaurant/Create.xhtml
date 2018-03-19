@@ -12,12 +12,6 @@
             <h:form id="RepasRestaurantCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{repasRestaurantController.selected != null}">
-                        <p:outputLabel value="Restaurant" for="restaurant" />
-                        <p:selectOneMenu id="restaurant" value="#{repasRestaurantController.selected.restaurant}" >
-                            <f:selectItems value="#{restaurantController.itemsAvailableSelectOne}"
-                                           var="restaurantItem"
-                                           itemValue="#{restaurantItem}"/>
-                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateRepasRestaurantLabel_prix}" for="prix" />
                         <p:inputText id="prix" value="#{repasRestaurantController.selected.prix}" title="#{bundle.CreateRepasRestaurantTitle_prix}" />
                         <p:outputLabel value="#{bundle.CreateRepasRestaurantLabel_nom}" for="nom" />
@@ -33,6 +27,12 @@
                             <f:selectItems value="#{specialiteController.itemsAvailableSelectOne}"
                                            var="specialiteItem"
                                            itemValue="#{specialiteItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateRepasRestaurantLabel_restaurant}" for="restaurant" />
+                        <p:selectOneMenu id="restaurant" value="#{repasRestaurantController.selected.restaurant}" >
+                            <f:selectItems value="#{restaurantController.itemsAvailableSelectOne}"
+                                           var="restaurantItem"
+                                           itemValue="#{restaurantItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateRepasRestaurantLabel_id}" for="id" />
                         <p:inputText id="id" value="#{repasRestaurantController.selected.id}" title="#{bundle.CreateRepasRestaurantTitle_id}" />

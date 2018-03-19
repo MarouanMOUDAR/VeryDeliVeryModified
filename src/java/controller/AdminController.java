@@ -27,7 +27,7 @@ public class AdminController implements Serializable {
     private service.AdminFacade ejbFacade;
     private List<Admin> items = null;
     private Admin selected;
-    private int valueReder ;
+    private int valueReder;
 
     public AdminController() {
     }
@@ -168,13 +168,12 @@ public class AdminController implements Serializable {
     }
 
     public int getValueReder() {
-       
+
         return valueReder;
     }
 
     public void setValueReder(int valueReder) {
         this.valueReder = valueReder;
     }
-    
 
 }

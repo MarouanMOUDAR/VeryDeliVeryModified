@@ -53,6 +53,12 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRepasRestaurantTitle_restaurant}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.restaurant}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListRepasRestaurantTitle_id}"/>
                             </f:facet>
                             <h:outputText value="#{item.id}"/>
