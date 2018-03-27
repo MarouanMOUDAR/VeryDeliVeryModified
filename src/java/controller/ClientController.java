@@ -28,6 +28,19 @@ public class ClientController implements Serializable {
     @EJB private service.ClientFacade ejbFacade;
     private List<Client> items = null;
     private Client selected;
+    private List<Client> clientCommande;
+
+    public List<Client> getClientCommande() {
+        if(clientCommande == null){
+            clientCommande = getFacade().findClientAyantCommande();
+        }
+        return clientCommande;
+    }
+
+    public void setClientCommande(List<Client> clientCommande) {
+        this.clientCommande = clientCommande;
+    }
+    
 
     public ClientController() {
     }

@@ -83,10 +83,9 @@ public class ReclamationController implements Serializable {
         return items;
     }
     public void test1(Reclamation reclamation){
-
-       reclamation.setDateReclamation(new Date());
+        
+       reclamation.setDateTraitement(new Date());
        getFacade().edit(reclamation);
-       System.out.println(reclamation.getDateTraitement());
     }
 
     private void persist(PersistAction persistAction, String successMessage) {

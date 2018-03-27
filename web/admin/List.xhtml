@@ -68,7 +68,9 @@
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":AdminViewForm" oncomplete="PF('AdminViewDialog').show()" disabled="#{empty adminController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":AdminEditForm" oncomplete="PF('AdminEditDialog').show()" disabled="#{empty adminController.selected}"/>
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{adminController.destroy}" update=":growl,datalist" disabled="#{empty adminController.selected}"/>
-                                <p:commandButton id="DashButton" icon="" action="Dashborad" value="Dashbord" />
+                            <p:commandButton action="ListReclamation" value="reclamation" />
+                            <p:commandButton action="./client/ListClientCommandes" value="Clients ayant fait une commande" />    
+                            <p:commandButton id="DashButton" icon="" action="Dashborad" value="Dashbord" />
                         </f:facet>
                     </p:dataTable>
                 </p:panel>
