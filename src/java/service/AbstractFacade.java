@@ -25,6 +25,15 @@ public abstract class AbstractFacade<T> {
     public void create(T entity) {
         getEntityManager().persist(entity);
     }
+    
+    public Long generate(String beanName, String attributeName) {
+        String requete = "SELECT max(item." + attributeName + ") FROM " + beanName + " item";
+        List<Long> maxId = getEntityManager().createQuery(requete).getResultList();
+        if (maxId == null || maxId.isEmpty() || maxId.get(0) == null) {
+            return 1L;
+        }
+        return maxId.get(0) + 1;
+    }
 
     public void edit(T entity) {
         getEntityManager().merge(entity);

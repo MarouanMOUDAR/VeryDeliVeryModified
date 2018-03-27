@@ -6,6 +6,8 @@
 package service;
 
 import bean.Facture;
+import bean.Restaurant;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +29,9 @@ public class FactureFacade extends AbstractFacade<Facture> {
 
     public FactureFacade() {
         super(Facture.class);
+    }
+    public List<Facture> findNonPayer(Restaurant restaurant){
+        return em.createQuery("SELECT f FROM Facture f WHERE f.dateExpedition IS NULL AND f.restaurant.id="+restaurant.getId()).getResultList();
     }
     
 }

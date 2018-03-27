@@ -107,6 +107,7 @@ public class Restaurant implements Serializable {
     public void setNom(String nom) {
         this.nom = nom;
     }
+    
 
     public List<RepasRestaurant> getRepasRestaurants() {
         return repasRestaurants;

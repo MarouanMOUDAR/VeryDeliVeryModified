@@ -29,6 +29,7 @@ public class RestaurantController implements Serializable {
     @EJB
     private service.RestaurantFacade ejbFacade;
     private List<Restaurant> items = null;
+    private List<Restaurant> restaurantsPaiement = null;
     private Restaurant selected;
     private Date dateOuverture;
     private Date datefermeture;
@@ -105,15 +106,26 @@ public class RestaurantController implements Serializable {
             items = getFacade().findAll();
         }
         return items;
+        
     }
-
+    
+    public void validerRestp(Restaurant restaurant){
+        getFacade().valideeRestaurant(restaurant);
+        JsfUtil.addSuccessMessage("restaurant validée");
+    }
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();
             try {
-                if (persistAction != PersistAction.DELETE) {
+                if (persistAction == PersistAction.CREATE) {
+                    
+                   int res =  getFacade().save(selected);
+                }
+                else if (persistAction == PersistAction.UPDATE) {
+                    
                     getFacade().edit(selected);
-                } else {
+                }
+                else {
                     getFacade().remove(selected);
                 }
                 JsfUtil.addSuccessMessage(successMessage);
@@ -218,4 +230,17 @@ public class RestaurantController implements Serializable {
         this.quartiers = quartiers;
     }
 
+    public List<Restaurant> getRestaurantsPaiement() {
+        
+        if(restaurantsPaiement == null){
+            restaurantsPaiement = getFacade().findRestoPaiement();
+            System.out.println("ha les resto li mamkhelssinch====>"+restaurantsPaiement);
+        }
+        return restaurantsPaiement;
+    }
+
+    public void setRestaurantsPaiement(List<Restaurant> restaurantsPaiement) {
+        this.restaurantsPaiement = restaurantsPaiement;
+    }
+    
 }

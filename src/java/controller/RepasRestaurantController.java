@@ -57,7 +57,9 @@ public class RepasRestaurantController implements Serializable {
     }
 
     public void create() {
-        
+        if(selected.getRestaurant().getStatus()==0){
+            JsfUtil.addErrorMessage("votre paiement est en cours de traitement");
+        }
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("RepasRestaurantCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
@@ -84,7 +86,8 @@ public class RepasRestaurantController implements Serializable {
     }
 
     private void persist(PersistAction persistAction, String successMessage) {
-        if (selected != null) {
+        if (selected != null && selected.getRestaurant().getStatus() !=0) { 
+            System.out.println("ha statu ta3 selected "+selected.getRestaurant().getStatus());
             setEmbeddableKeys();
             try {
                 if (persistAction != PersistAction.DELETE) {

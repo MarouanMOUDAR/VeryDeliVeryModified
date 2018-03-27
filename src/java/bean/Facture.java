@@ -116,5 +116,7 @@ public class Facture implements Serializable {
     public String toString() {
         return "bean.Facture[ id=" + id + " ]";
     }
+
+  
     
 }
