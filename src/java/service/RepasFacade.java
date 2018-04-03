@@ -6,6 +6,7 @@
 package service;
 
 import bean.Repas;
+//import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +29,10 @@ public class RepasFacade extends AbstractFacade<Repas> {
     public RepasFacade() {
         super(Repas.class);
     }
+//    public List<Repas> findRepasRestau(Long id) {
+//        List<Repas> rep = em.createQuery("SELECT r FROM RepasRestaurant r WHERE r.restaurant.id=id").getResultList();
+//        System.out.println("ha la list ===>"+rep);
+//        return rep;
+//    }
     
 }

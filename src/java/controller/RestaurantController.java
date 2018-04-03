@@ -41,6 +41,9 @@ public class RestaurantController implements Serializable {
     }
 
     public Restaurant getSelected() {
+        if(selected==null){
+            selected=new Restaurant();
+        }
         return selected;
     }
 

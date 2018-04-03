@@ -28,6 +28,7 @@ public class RepasController implements Serializable {
     @EJB private service.RepasFacade ejbFacade;
     private List<Repas> items = null;
     private Repas selected;
+    //private List <Repas> repasRestau;
 
     public RepasController() {
     }
@@ -81,6 +82,10 @@ public class RepasController implements Serializable {
         }
         return items;
     }
+//    public List<Repas> getRepasrestau(Long id) {
+//        repasRestau= getFacade().findRepasRestau(id);
+//        return repasRestau;
+//    }
 
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
