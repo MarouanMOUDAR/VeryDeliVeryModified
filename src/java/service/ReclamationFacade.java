@@ -34,5 +34,11 @@ public class ReclamationFacade extends AbstractFacade<Reclamation> {
         System.out.println("ha la list ===>"+req);
         return req;
     }
+     public List<Reclamation> findReclamationValid(){
+        List<Reclamation> req = em.createQuery("SELECT r FROM Reclamation r WHERE r.dateTraitement IS NOT NULL").getResultList();
+        System.out.println("ha la list ===>"+req);
+        return req;
+    }
+     
     
 }

@@ -6,6 +6,7 @@ import controller.util.JsfUtil.PersistAction;
 import service.ReclamationFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -29,6 +30,7 @@ public class ReclamationController implements Serializable {
     private List<Reclamation> items = null;
     private Reclamation selected;
     private List<Reclamation> reclamationsAdmin;
+    private List<Reclamation> reclamValid;
 
     public ReclamationController() {
     }
@@ -83,12 +85,12 @@ public class ReclamationController implements Serializable {
         return items;
     }
 
-    public void test1(Reclamation reclamation) {
+    public void testReclamationValid(Reclamation reclamation) {
         reclamation.setDateTraitement(new Date());
         getFacade().edit(reclamation);
         reclamationsAdmin.remove(reclamationsAdmin.indexOf(reclamation));
     }
-
+   
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();
@@ -170,6 +172,21 @@ public class ReclamationController implements Serializable {
 
     }
 
+    public List<Reclamation> methodRecValid(){
+            items = ejbFacade.findReclamationValid();
+            return items;
+        
+    }
+    public List<Reclamation> methodRecNnValid(){
+            items = ejbFacade.findReclamationNonTraiter();
+            return items;
+        
+    }
+    public List<Reclamation> methodRecAll(){
+            items = ejbFacade.findAll();
+            return items;
+        
+    }
     public List<Reclamation> getReclamationsAdmin() {
         if (reclamationsAdmin == null) {
             reclamationsAdmin = getFacade().findReclamationNonTraiter();
@@ -181,4 +198,16 @@ public class ReclamationController implements Serializable {
         this.reclamationsAdmin = reclamationsAdmin;
     }
 
+    public List<Reclamation> getReclamValid() {
+         if (reclamValid== null) {
+            reclamValid = getFacade().findReclamationValid();
+        }
+        return reclamValid;
+    }
+
+    public void setReclamValid(List<Reclamation> reclamValid) {
+        this.reclamValid = reclamValid;
+    }
+
+    
 }
