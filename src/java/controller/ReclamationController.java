@@ -85,6 +85,10 @@ public class ReclamationController implements Serializable {
         return items;
     }
 
+    public void testReclamTrait(Reclamation reclamation) {
+        reclamation.setDateTraitement(new Date());
+        getFacade().edit(reclamation);
+    }
     public void testReclamationValid(Reclamation reclamation) {
         reclamation.setDateTraitement(new Date());
         getFacade().edit(reclamation);

@@ -70,6 +70,12 @@
                             </f:facet>
                             <h:outputText value="#{item.id}"/>
                         </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Traitement"/>
+                            </f:facet>
+                            <p:commandButton actionListener="#{reclamationController.testReclamTrait(item)}" update="datalist" value="Traité" />
+                        </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{reclamationController.prepareCreate}" update=":ReclamationCreateForm" oncomplete="PF('ReclamationCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ReclamationViewForm" oncomplete="PF('ReclamationViewDialog').show()" disabled="#{empty reclamationController.selected}"/>
