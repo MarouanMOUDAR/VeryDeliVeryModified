@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://java.sun.com/jsf/facelets">
+        <head>
+            <meta charset="utf-8"/>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <title>list reclamations</title>
+            <meta name="description" content=""/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <!-- CSS
+    ================================================ -->
+            <!-- Owl Carousel -->
+            <link rel="stylesheet" href="../templates/css/owl.carousel.css"></link>
+            <!-- bootstrap.min css -->
+            <link rel="stylesheet" href="../templates/css/bootstrap.min.css"></link>
+            <!-- Font-awesome.min css -->
+            <link rel="stylesheet" href="../templates/css/font-awesome.min.css"></link>
+            <!-- Main Stylesheet -->
+            <link rel="stylesheet" href="../templates/css/animate.min.css"></link>
+
+            <link rel="stylesheet" href="../templates/css/main.css"></link>
+            <!-- Responsive Stylesheet -->
+            <link rel="stylesheet" href="../templates/css/responsive.css"></link>
+            <!-- Js -->
+            <script src="../templates/js/vendor/modernizr-2.6.2.min.js"></script>
+            <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
+            <!--    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>-->
+            <script src="../templates/js/jquery.nav.js"></script>
+            <script src="../templates/js/jquery.sticky.js"></script>
+            <script src="../templates/js/bootstrap.min.js"></script>
+            <script src="../templates/js/plugins.js"></script>
+            <script src="../templates/js/wow.min.js"></script>
+            <script src="../templates/js/main.js"></script>
+        </head> 
+        <body>
+            <!--
+            header-img start 
+            ============================== -->
+            <section id="hero-area">
+                <img class="img-responsive" src="../templates/images/cover.png" alt=""/>
+            </section>
+            <!--
+              Header start 
+            ============================== -->
+            <ui:include src="../templates/bars/header.xhtml" />
+
+
+
+
+            <!--=======content================================-->
+            <div class="container">
+                <div class="well">
+                    <div class="span5">
+                        <h:form id="ReclamationListForm">
+                            <p:commandButton class="btn btn-primary" actionListener="#{reclamationController.methodRecValid()}" id="recValid" value="Reclamations Validées" update="datalist"></p:commandButton>
+                            <p:commandButton class="btn btn-primary" actionListener="#{reclamationController.methodRecNnValid()}" id="recNnValid" value="Reclamations Non Validées" update="datalist"></p:commandButton>
+                            <p:commandButton class="btn btn-primary" actionListener="#{reclamationController.methodRecAll()}" id="recAll" value="tout les reclamations" update="datalist"></p:commandButton>
+                            <p:panel header="#{bundle.ListReclamationTitle}">
+                                <h:form id="datalist">
+                                    <p:dataTable class="table table-striped custab" id="datalist" value="#{reclamationController.items}" var="item"
+
+
+                                                 selectionMode="single" selection="#{reclamationController.selected}"
+                                                 paginator="true"
+                                                 rowKey="#{item.id}"
+                                                 rows="10"
+                                                 rowsPerPageTemplate="10,20,30,40,50"
+                                                 >
+
+                                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                                        
+                                        <p:column style="width: 200px">
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListReclamationTitle_dateReclamation}"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.dateReclamation}">
+                                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                                            </h:outputText>
+                                        </p:column>
+                                        <p:column style="width: 200px" >
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListReclamationTitle_message}"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.message}"/>
+                                        </p:column>
+                                        <p:column style="width: 200px">
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListReclamationTitle_dateTraitement}"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.dateTraitement}">
+                                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                                            </h:outputText>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListReclamationTitle_id}"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.id}"/>
+                                        </p:column>
+                                        <p:column style="width: 200px">
+                                            <f:facet name="header">
+                                                <h:outputText value="Traitement"/>
+                                            </f:facet>
+                                            <p:commandButton class="btn btn-primary" actionListener="#{reclamationController.testReclamTrait(item)}" update="datalist" value="Traité" />
+                                        </p:column>
+
+                                        <f:facet name="footer">
+                                            <p:commandButton class="btn btn-primary" id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{reclamationController.prepareCreate}" update=":ReclamationCreateForm" oncomplete="PF('ReclamationCreateDialog').show()"/>
+                                            <p:commandButton class="btn btn-primary" id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ReclamationViewForm" oncomplete="PF('ReclamationViewDialog').show()" disabled="#{empty reclamationController.selected}"/>
+                                            <p:commandButton class="btn btn-primary" id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ReclamationEditForm" oncomplete="PF('ReclamationEditDialog').show()" disabled="#{empty reclamationController.selected}"/>
+                                            <p:commandButton class="btn btn-primary" id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{reclamationController.destroy}" update=":growl,datalist" disabled="#{empty reclamationController.selected}"/>
+                                        </f:facet>
+                                    </p:dataTable>
+                                </h:form>
+                            </p:panel>
+                        </h:form>
+
+                        <ui:include src="Create.xhtml"/>
+                        <ui:include src="Edit.xhtml"/>
+                        <ui:include src="View.xhtml"/>
+                        <ui:include src="../templates/bars/footer.xhtml" />
+
+
+
+                    </div>
+                </div>
+                
+            </div>
+
+
+            
+
+
+
+
+            <!--
+             footer-bottom  start
+             ============================= -->
+            <ui:include src="../templates/bars/footer.xhtml" />
+        </body>
+    </ui:composition>
+
+</html>
+

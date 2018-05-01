@@ -30,6 +30,7 @@ public class Commande implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateCmd;
     private Double total;
+    private int status;
     private String adresseLivraison;
     @ManyToOne
     private Client client;
@@ -51,6 +52,15 @@ public class Commande implements Serializable {
         this.commandeItems = commandeItems;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+    
+    
     public Client getClient() {
         return client;
     }

@@ -59,6 +59,13 @@
                             </f:facet>
                             <h:outputText value="#{item.id}"/>
                         </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Action"/>
+                            </f:facet>
+                            <p:commandButton value="commandes" action="#{commandeController.findCItems()}"/>
+                        </p:column>
+                       
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{commandeController.prepareCreate}" update=":CommandeCreateForm" oncomplete="PF('CommandeCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":CommandeViewForm" oncomplete="PF('CommandeViewDialog').show()" disabled="#{empty commandeController.selected}"/>

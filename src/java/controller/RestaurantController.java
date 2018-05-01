@@ -40,6 +40,10 @@ public class RestaurantController implements Serializable {
     public RestaurantController() {
     }
 
+    public String ret(){
+        return "/commande/List.xhtml";
+    }
+    
     public Restaurant getSelected() {
         if(selected==null){
             selected=new Restaurant();

@@ -1,6 +1,7 @@
 package controller;
 
 import bean.Commande;
+import bean.CommandeItem;
 import controller.util.JsfUtil;
 import controller.util.JsfUtil.PersistAction;
 import service.CommandeFacade;
@@ -28,10 +29,40 @@ public class CommandeController implements Serializable {
     @EJB private service.CommandeFacade ejbFacade;
     private List<Commande> items = null;
     private Commande selected;
+    private List<CommandeItem> commandeItems;
 
     public CommandeController() {
     }
 
+    public String findCItems(){
+              commandeItems=ejbFacade.findCom(selected);
+  
+        return "/commande/commandeItemComandes";
+    }
+
+    public void valider(Commande c){
+        getFacade().valider(c);
+        items=getFacade().findNonValider();
+    }
+    public CommandeFacade getEjbFacade() {
+        return ejbFacade;
+    }
+
+    public void setEjbFacade(CommandeFacade ejbFacade) {
+        this.ejbFacade = ejbFacade;
+    }
+
+    public List<CommandeItem> getCommandeItems() {
+        
+        return commandeItems;
+    }
+
+    public void setCommandeItems(List<CommandeItem> commandeItems) {
+        this.commandeItems = commandeItems;
+    }
+    public String afficheRest(){
+        return "/restaurant/AllRestaurant.xhtml";
+    }
     public Commande getSelected() {
         return selected;
     }
